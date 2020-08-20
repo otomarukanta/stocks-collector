@@ -1,0 +1,28 @@
+name: Collect Stock Price
+on:
+  push:
+  schedule:
+    - cron : '0 21 * * *'
+
+jobs:
+  build:
+    name: get
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Install pipenv and dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pipenv --upgrade-strategy=only-if-needed
+          pipenv install --dev
+      - name: Run script
+        run: |
+          OUTPUT_BUCKET_NAME="otomarukanta-stock-price" pipenv run python collect_stock_price.py
