@@ -20,7 +20,6 @@ logger.addHandler(handler)
 logger.propagate = False
 
 def get_codes():
-    return [1413]
     url = "https://www.jpx.co.jp/markets/statistics-equities/misc/tvdivq0000001vg2-att/data_j.xls"
     df = pd.read_excel(url)
     return df['コード'].values
