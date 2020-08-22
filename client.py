@@ -25,12 +25,12 @@ class StockPriceClient(BaseClient):
         for row in reader:
             stock_price = StockPrice(
                 yyyymmdd=int(row[0].replace("-", "")),
-                open=int(row[1]),
-                high=int(row[2]),
-                low=int(row[3]),
-                close=int(row[4]),
+                open=float(row[1]),
+                high=float(row[2]),
+                low=float(row[3]),
+                close=float(row[4]),
                 volume=int(row[5]),
-                adjusted_close=int(row[6])
+                adjusted_close=float(row[6])
             )
 
             yield stock_price
