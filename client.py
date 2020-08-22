@@ -16,9 +16,6 @@ class StockPriceClient(BaseClient):
             data={"code": code, "year": year}
         )
         
-        if res.status_code != requests.codes.ok:
-            return None
-
         reader = csv.reader(io.StringIO(res.text))
 
         # header2行をskip
