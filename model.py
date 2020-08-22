@@ -2,9 +2,9 @@ from typing import NamedTuple
 
 class StockPrice(NamedTuple):
     yyyymmdd: int
-    open: int
-    high: int
-    low: int
-    close: int
+    open: float
+    high: float
+    low: float
+    close: float
     volume: int
-    adjusted_close: int
+    adjusted_close: float

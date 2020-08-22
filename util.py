@@ -4,6 +4,8 @@ def generate_avro_schema(records: Iterable[NamedTuple]):
     def to_avro_type(t: Any):
         if t is int:
             return 'int'
+        elif t is float:
+            return 'double'
         else:
             raise Exception(f"{t} is not supported to convert avro type.")
     cls = next(iter(records))
